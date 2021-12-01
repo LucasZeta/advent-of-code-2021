@@ -17,11 +17,15 @@ fun countDepthIncreases(depthMeasurements: List<Int>): Int {
 fun countThreeMeasurementIncreases(depthMeasurements: List<Int>): Int {
     var timesDepthIncreased = 0
 
-    depthMeasurements.forEachIndexed { index, currentDepth ->
+    depthMeasurements.forEachIndexed { index, _ ->
         if (index < 3) return@forEachIndexed
 
-        val currentMeasurement = currentDepth + depthMeasurements[index - 1] + depthMeasurements[index - 2]
-        val lastMeasurement = depthMeasurements[index - 1] + depthMeasurements[index - 2] + depthMeasurements[index - 3]
+        val currentMeasurement = depthMeasurements
+            .subList(index - 2, index + 1)
+            .reduce(Int::plus)
+        val lastMeasurement = depthMeasurements
+            .subList(index - 3, index)
+            .reduce(Int::plus)
 
         if (currentMeasurement > lastMeasurement) {
             timesDepthIncreased++
