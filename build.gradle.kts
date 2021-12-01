@@ -26,6 +26,11 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+    }
 }
 
 tasks.withType<KotlinCompile> {
