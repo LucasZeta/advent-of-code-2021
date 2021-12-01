@@ -8,12 +8,17 @@ plugins {
 group = "com.lucaszeta"
 version = "1.0-SNAPSHOT"
 
+object DependencyVersions {
+    const val truth = "1.1.3"
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     testImplementation(kotlin("test"))
+    testImplementation("com.google.truth:truth:${DependencyVersions.truth}")
 }
 
 tasks.test {
