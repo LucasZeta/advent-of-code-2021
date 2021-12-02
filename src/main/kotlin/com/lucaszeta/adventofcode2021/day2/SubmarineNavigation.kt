@@ -5,19 +5,13 @@ class SubmarineNavigation(
     var depth: Int
 ) {
 
-    fun navigate(input: String) {
-        val (command, distance) = input.split(" ")
+    fun navigate(input: Pair<Command, Int>) {
+        val (command, distance) = input
 
         when (command) {
-            FORWARD -> horizontalPosition += distance.toInt()
-            UP -> depth -= distance.toInt()
-            DOWN -> depth += distance.toInt()
+            Command.FORWARD -> horizontalPosition += distance
+            Command.UP -> depth -= distance
+            Command.DOWN -> depth += distance
         }
-    }
-
-    companion object {
-        const val FORWARD = "forward"
-        const val UP = "up"
-        const val DOWN = "down"
     }
 }
