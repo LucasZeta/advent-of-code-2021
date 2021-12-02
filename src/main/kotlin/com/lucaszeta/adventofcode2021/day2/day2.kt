@@ -5,6 +5,10 @@ import com.lucaszeta.adventofcode2021.ext.getResourceAsText
 fun main() {
     val commandList = getResourceAsText("/day2/course.txt")
         .split("\n")
+        .map {
+            val (command, distance) = it.split(" ")
+            Command.fromInput(command) to distance.toInt()
+        }
 
     val basicNavigation = SubmarineNavigation(0, 0)
     commandList.forEach(basicNavigation::navigate)
