@@ -6,10 +6,17 @@ fun main() {
     val commandList = getResourceAsText("/day2/course.txt")
         .split("\n")
 
-    val submarine = SubmarineNavigation(0, 0)
-    commandList.forEach(submarine::navigate)
+    val basicNavigation = SubmarineNavigation(0, 0)
+    commandList.forEach(basicNavigation::navigate)
 
-    println("Horizontal position: ${submarine.horizontalPosition}")
-    println("Depth: ${submarine.depth}")
-    println("Product: ${submarine.horizontalPosition * submarine.depth}")
+    println("Horizontal position: ${basicNavigation.horizontalPosition}")
+    println("Depth: ${basicNavigation.depth}")
+    println("Product: ${basicNavigation.horizontalPosition * basicNavigation.depth}")
+
+    val aimedNavigation = ImprovedSubmarineNavigation(0, 0, 0)
+    commandList.forEach(aimedNavigation::navigate)
+
+    println("Horizontal position: ${aimedNavigation.horizontalPosition}")
+    println("Depth: ${aimedNavigation.depth}")
+    println("Product: ${aimedNavigation.horizontalPosition * aimedNavigation.depth}")
 }
