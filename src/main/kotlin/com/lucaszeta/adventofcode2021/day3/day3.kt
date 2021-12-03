@@ -23,4 +23,3 @@ fun main() {
     println("CO2 Scrubber Rating: $co2ScrubberRating")
     println("Life Support Rating: $lifeSupportRating")
 }
-
