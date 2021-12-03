@@ -3,7 +3,6 @@ package com.lucaszeta.adventofcode2021.day3
 fun findMostCommonBit(bits: List<String>) =
     findCommonBit(bits) { zeroes, ones -> zeroes > ones }
 
-
 fun findLeastCommonBit(bits: List<String>) =
     findCommonBit(bits) { zeroes, ones -> zeroes <= ones }
 
