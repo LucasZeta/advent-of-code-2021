@@ -1,7 +1,6 @@
 package com.lucaszeta.adventofcode2021.day3
 
 import com.google.common.truth.Truth.assertThat
-import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -10,32 +9,32 @@ import org.junit.jupiter.api.TestFactory
 class PowerConsumptionKtTest {
 
     @Nested
-    @DisplayName("Gamma Rate")
     inner class GammaRate {
 
         @Test
         fun `should find most common bits of each reading`() {
-            val output = findGammaRate(listOf(
-                listOf("0", "0", "1", "0", "0"),
-                listOf("1", "1", "1", "1", "0"),
-                listOf("1", "0", "1", "1", "0"),
-                listOf("1", "0", "1", "1", "1"),
-                listOf("1", "0", "1", "0", "1"),
-                listOf("0", "1", "1", "1", "1"),
-                listOf("0", "0", "1", "1", "1"),
-                listOf("1", "1", "1", "0", "0"),
-                listOf("1", "0", "0", "0", "0"),
-                listOf("1", "1", "0", "0", "1"),
-                listOf("0", "0", "0", "1", "0"),
-                listOf("0", "1", "0", "1", "0")
-            ))
+            val output = findGammaRate(
+                listOf(
+                    listOf("0", "0", "1", "0", "0"),
+                    listOf("1", "1", "1", "1", "0"),
+                    listOf("1", "0", "1", "1", "0"),
+                    listOf("1", "0", "1", "1", "1"),
+                    listOf("1", "0", "1", "0", "1"),
+                    listOf("0", "1", "1", "1", "1"),
+                    listOf("0", "0", "1", "1", "1"),
+                    listOf("1", "1", "1", "0", "0"),
+                    listOf("1", "0", "0", "0", "0"),
+                    listOf("1", "1", "0", "0", "1"),
+                    listOf("0", "0", "0", "1", "0"),
+                    listOf("0", "1", "0", "1", "0")
+                )
+            )
 
             assertThat(output).isEqualTo("10110")
         }
     }
 
     @Nested
-    @DisplayName("Epsilon Rate")
     inner class EpsilonRate {
 
         @Test
