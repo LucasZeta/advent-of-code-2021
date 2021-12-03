@@ -9,13 +9,23 @@ fun main() {
 
     val gammaRate = findGammaRate(input)
     val epsilonRate = findEpsilonRate(gammaRate)
-
     val powerConsumption = calculatePowerConsumption(gammaRate, epsilonRate)
 
     println("Gamma Rate: $gammaRate")
     println("Epsilon Rate: $epsilonRate")
     println("Power consumption: $powerConsumption")
+
+    val oxygenGeneratorRating = findOxygenGeneratorRating(input)
+    val co2ScrubberRating = findCO2ScrubberRating(input)
+    val lifeSupportRating = calculateLifeSupportRating(oxygenGeneratorRating, co2ScrubberRating)
+
+    println("Oxygen Generator Rating: $oxygenGeneratorRating")
+    println("CO2 Scrubber Rating: $co2ScrubberRating")
+    println("Life Support Rating: $lifeSupportRating")
 }
+
+fun calculateLifeSupportRating(oxygenGeneratorRating: String, co2ScrubberRating: String) =
+    Integer.parseInt(oxygenGeneratorRating, 2) * Integer.parseInt(co2ScrubberRating, 2)
 
 fun findGammaRate(input: List<List<String>>): String {
     val bitSize = input[0].size
@@ -28,11 +38,34 @@ fun findGammaRate(input: List<List<String>>): String {
     return gammaRate
 }
 
-fun findMostCommonBit(bits: List<String>): String {
-    val zeroes = bits.count { it == "0" }
-    val ones = bits.size - zeroes
+fun findOxygenGeneratorRating(input: List<List<String>>): String {
+    val candidates = input.toMutableList()
+    var index = 0
 
-    return if (zeroes > ones) "0" else "1"
+    while (candidates.size > 1) {
+        val mostCommonBit = findMostCommonBit(candidates.map { it[index] })
+
+        candidates.removeIf { it[index] != mostCommonBit }
+
+        ++index
+    }
+
+    return candidates.first().joinToString("")
+}
+
+fun findCO2ScrubberRating(input: List<List<String>>): String {
+    val candidates = input.toMutableList()
+    var index = 0
+
+    while (candidates.size > 1) {
+        val mostCommonBit = findLeastCommonBit(candidates.map { it[index] })
+
+        candidates.removeIf { it[index] != mostCommonBit }
+
+        ++index
+    }
+
+    return candidates.first().joinToString("")
 }
 
 fun findEpsilonRate(gammaRate: String) = gammaRate
