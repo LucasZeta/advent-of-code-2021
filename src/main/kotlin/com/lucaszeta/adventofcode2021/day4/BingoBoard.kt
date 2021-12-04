@@ -1,8 +1,7 @@
 package com.lucaszeta.adventofcode2021.day4
 
-class BingoBoard(
-    private val table: List<List<Int>>
-) {
+class BingoBoard(val table: List<List<Int>>) {
+
     private val scoreIndexes = mutableListOf<Pair<Int, Int>>()
 
     fun update(numberDrawn: Int) {
