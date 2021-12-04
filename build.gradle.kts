@@ -8,6 +8,7 @@ plugins {
 
 object DependencyVersions {
     const val truth = "1.1.3"
+    const val mockk = "1.12.1"
 }
 
 group = "com.lucaszeta"
@@ -22,6 +23,7 @@ apply(plugin = "org.jlleitschuh.gradle.ktlint")
 dependencies {
     testImplementation(kotlin("test"))
     testImplementation("com.google.truth:truth:${DependencyVersions.truth}")
+    testImplementation("io.mockk:mockk:${DependencyVersions.mockk}")
 }
 
 tasks.test {
