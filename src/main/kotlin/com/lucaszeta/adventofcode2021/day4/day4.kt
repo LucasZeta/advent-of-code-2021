@@ -26,21 +26,26 @@ fun main() {
         .toMutableList()
 
     val numbersDrawn = parseToDrawnNumbers(input.removeFirst())
-    val boards = input.map(::parseToBingoBoard)
+    val boards = input.map(::parseToBingoBoard).toMutableList()
 
-    var winningBoard: BingoBoard? = null
+    val scores = mutableListOf<Int>()
 
-    while (numbersDrawn.size > 0 && winningBoard == null) {
+    while (numbersDrawn.size > 0 && !boards.all { it.hasWon() }) {
         val currentNumber = numbersDrawn.removeFirst()
+        val boardsToRemove = mutableListOf<BingoBoard>()
 
         boards.forEach { board ->
             board.update(currentNumber)
 
             if (board.hasWon()) {
-                winningBoard = board
+                scores.add(board.calculateScore())
+                boardsToRemove.add(board)
             }
         }
+
+        boardsToRemove.forEach(boards::remove)
     }
 
-    println("Winning board's score: ${winningBoard?.calculateScore()}")
+    println("Winning board's score: ${scores.first()}")
+    println("Last winning board's score: ${scores.last()}")
 }
