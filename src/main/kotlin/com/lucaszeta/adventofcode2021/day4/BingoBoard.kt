@@ -1,9 +1,9 @@
 package com.lucaszeta.adventofcode2021.day4
 
 class BingoBoard(
-    val table: List<List<Int>>
+    private val table: List<List<Int>>
 ) {
-    val scoreIndexes = mutableListOf<Pair<Int, Int>>()
+    private val scoreIndexes = mutableListOf<Pair<Int, Int>>()
 
     fun update(numberDrawn: Int) {
         table.forEachIndexed { rowIndex, line ->
@@ -15,9 +15,17 @@ class BingoBoard(
         }
     }
 
-    fun calculateScore() {
-        // sum of unmarked numbers
-        // multiplied by number in last scored index
+    fun calculateScore(): Int {
+        val lastScoredNumber = table[scoreIndexes.last().first][scoreIndexes.last().second]
+        var sumUnmarkedNumbers = 0
+
+        table.forEachIndexed { rowIndex, line ->
+            sumUnmarkedNumbers += line.filterIndexed { columnIndex, _ ->
+                !scoreIndexes.contains(rowIndex to columnIndex)
+            }.sum()
+        }
+
+        return sumUnmarkedNumbers * lastScoredNumber
     }
 
     fun hasWon(): Boolean {

@@ -42,7 +42,5 @@ fun main() {
         }
     }
 
-    println("Winning Board")
-    println(winningBoard?.table)
-    println("Score: ${winningBoard?.calculateScore()}")
+    println("Winning board's score: ${winningBoard?.calculateScore()}")
 }
