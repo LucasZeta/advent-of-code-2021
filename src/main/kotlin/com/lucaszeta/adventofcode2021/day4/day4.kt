@@ -30,7 +30,7 @@ fun main() {
 
     val scores = mutableListOf<Int>()
 
-    while (numbersDrawn.size > 0 && !boards.all { it.hasWon() }) {
+    while (numbersDrawn.size > 0 && boards.isNotEmpty()) {
         val currentNumber = numbersDrawn.removeFirst()
         val boardsToRemove = mutableListOf<BingoBoard>()
 
